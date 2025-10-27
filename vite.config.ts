@@ -4,6 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  base: './', // ✅ Crucial: ensures relative asset paths in production
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -15,6 +16,7 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    // ✅ This proxy is only used in local dev, ignored in production
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
